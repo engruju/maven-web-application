@@ -109,7 +109,7 @@
 	</distributionManagement>
 	
 	<build>
-		<finalName>tesla-web-app2</finalName>
+		<finalName>austin</finalName>
 		
 		<plugins>
 			<plugin>
