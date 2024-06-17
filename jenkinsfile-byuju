@@ -1,7 +1,7 @@
 node{ 
   def mavenHome = tool name: 'maven3.9.7'
   stage('1clone'){
-   git 
+   git 'https://github.com/engruju/maven-web-application.git'
   } 
   stage('2Test+biuld'){
    sh "${mavenHome}/bin/mvn clean package"
