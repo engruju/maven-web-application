@@ -15,6 +15,6 @@ node{
   }
   stage('5Deploy'){
    sh "${mavenHome}/bin/mvn 
-/* 
+*/
  }
 }
