@@ -14,5 +14,6 @@ node{
    sh "${mavenHome}/bin/mvn deploy"
  }
  */
-stage('deploy'){}
- 
+stage('5deploy'){
+  deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: '54.196.29.59:8177')], contextPath: null, war: 'target/*'
+ }
