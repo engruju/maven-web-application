@@ -1,20 +1,47 @@
-node{ 
-  def mavenHome = tool name: 'maven3.9.7'
-   }
-  stage('1clone'){
-   git "https://github.com/engruju/maven-web-application.git"
-  } 
-  stage('2Test+biuld'){
-   sh "${mavenHome}/bin/mvn package"
-  }
- /*
-  stage('sonarQube'){
-   sh "${mavenHome}/bin/mvn sonar:sonar"
-  }
-  stage('4uplodeArtifacts'){
-   sh "${mavenHome}/bin/mvn deploy"
- }
- */
-stage('5deploy'){
-  deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: 'http://54.196.29.59:8177/')], contextPath: null, war: 'target/*' 
+pipeline {
+    agent any
+
+    environment {
+        // Define Maven tool name
+        MAVEN_HOME = tool name: 'maven3.9.7', type: 'maven'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Checkout source code from Git repository
+                git "https://github.com/engruju/maven-web-application.git"
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                // Use Maven to build and package the application
+                sh "${env.MAVEN_HOME}/bin/mvn package"
+            }
+        }
+
+        /*
+        // Uncomment if you want to include SonarQube analysis stage
+        stage('SonarQube Analysis') {
+            steps {
+                sh "${env.MAVEN_HOME}/bin/mvn sonar:sonar"
+            }
+        }
+
+        // Uncomment if you want to include artifact deployment stage
+        stage('Deploy Artifacts') {
+            steps {
+                sh "${env.MAVEN_HOME}/bin/mvn deploy"
+            }
+        }
+        */
+
+        stage('Deploy to Tomcat') {
+            steps {
+                // Deploy the built WAR file to Tomcat
+                deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: 'http://54.196.29.59:8177/')], contextPath: null, war: 'target/*.war'
+            }
+        }
+    }
 }
