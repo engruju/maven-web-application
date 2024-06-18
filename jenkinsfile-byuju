@@ -16,6 +16,5 @@ node{
  }
  */
 stage('5deploy'){
-  deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: '54.196.29.59:8177')], contextPath: null, war: 'target/*'
- }
-
+  deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: 'http://54.196.29.59:8177/')], contextPath: null, war: 'target/*' 
+}
