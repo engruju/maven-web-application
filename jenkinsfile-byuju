@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 // Deploy the built WAR file to Tomcat
-                deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: 'http://54.196.29.59:8177/')], contextPath: null, war: 'target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: 'http://http://34.224.40.169:8177/')], contextPath: null, war: 'target/*.war'
             }
         }
     }
