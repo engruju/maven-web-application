@@ -12,9 +12,6 @@ node{
   }
   stage('4uplodeArtifacts'){
    sh "${mavenHome}/bin/mvn deploy"
-  }
-  stage('5Deploy'){
-   sh "${mavenHome}/bin/mvn 
  }
  */
 }
