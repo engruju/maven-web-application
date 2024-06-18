@@ -4,9 +4,9 @@ node{
    git 'https://github.com/engruju/maven-web-application.git'
   } 
   stage('2Test+biuld'){
-   sh "${mavenHome}/bin/mvn clean package"
+   sh "${mavenHome}/bin/mvn package"
   }
-/*
+ /*
   stage('sonarQube'){
    sh "${mavenHome}/bin/mvn sonar:sonar"
   }
@@ -17,3 +17,4 @@ node{
 stage('5deploy'){
   deploy adapters: [tomcat9(credentialsId: 'tom-catcredential1', path: '', url: '54.196.29.59:8177')], contextPath: null, war: 'target/*'
  }
+}
